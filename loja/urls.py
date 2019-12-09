@@ -31,10 +31,3 @@ if settings.DEBUG:
         path('__debug__/', include(debug_toolbar.urls)),
 
     ] + urlpatterns
-
-# TODO:  remover debug toolbar
-INTERNAL_IPS = [
-    # ....
-    '127.0.0.1'
-    # ....
-]
