@@ -54,7 +54,7 @@ class Perfil(models.Model):
     )
 
     def __str__(self):
-        return f'{self.usuario.first_name} {self.usuario.last_name}'
+        return f'{self.usuario}'
 
     def clean(self):
         error_messages = {}
@@ -68,9 +68,6 @@ class Perfil(models.Model):
         if error_messages:
             raise ValidationError(error_messages)
 
-        raise ValidationError({
-            'idade': 'Erro no campo fornecido de idade'
-            })
 
     class Meta:
         verbose_name = 'Perfil'
