@@ -144,14 +144,12 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-MESSAGES_TAGS= {
-
-    constants.DEBUG : 'alert-info',
-    constants.ERROR : 'alert-danger',
-    constants.INFO : 'alert-info',
-    constants.SUCCESS : 'alert-success',
-    constants.WARNING : 'alert-warning',
-
+MESSAGE_TAGS = {
+    constants.ERROR: 'alert-danger',
+    constants.WARNING: 'alert-warning',
+    constants.DEBUG: 'alert.info',
+    constants.SUCCESS: 'alert-success',
+    constants.INFO: 'alert-info',
 }
 
 # Sessão em dias : 60s * 60m * 24h * 1d
