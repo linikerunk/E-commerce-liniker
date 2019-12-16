@@ -10,6 +10,4 @@ urlpatterns = [
     path('removerdocarrinho/', views.RemoverDoCarrinho.as_view(), name="remover"),
     path('carrinho/', views.Carrinho.as_view(), name="carrinho"),
     path('finalizar/', views.Finalizar.as_view(), name="finalizar"),
-
-
 ]
