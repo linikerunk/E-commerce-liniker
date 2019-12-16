@@ -160,6 +160,6 @@ class Carrinho(ListView):
         return render(self.request, 'produto/carrinho.html', contexto)
 
 
-class Finalizar(ListView):
+class ResumoDaCompra(ListView):
     def get(self, *args, **kwargs):
         return HttpResponse('Finalizar')
