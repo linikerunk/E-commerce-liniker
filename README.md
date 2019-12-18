@@ -5,3 +5,5 @@ Domingao 08-12-2019
 
 To no trabalho aqui... 
 
+18-12 irei começar as validações do perfil
+
