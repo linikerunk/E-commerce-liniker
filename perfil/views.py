@@ -60,6 +60,7 @@ class Criar(BasePerfil):
         
         # Usuário Logado
         if self.request.user.is_authenticated:
+            
             pass
 
         #Usuário não logado (novo)
