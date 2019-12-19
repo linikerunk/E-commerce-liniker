@@ -76,6 +76,7 @@ class Criar(BasePerfil):
         
         # Usuário Logado
         if self.request.user.is_authenticated:
+<<<<<<< HEAD
             usuario = get_object_or_404(User, username=self.request.user.username)
             usuario.username = username
             
@@ -97,6 +98,10 @@ class Criar(BasePerfil):
                 perfil.usuario = usuario
                 perfil.save()
 
+=======
+            
+            pass
+>>>>>>> master
 
         #Usuário não logado (novo)
         else:
