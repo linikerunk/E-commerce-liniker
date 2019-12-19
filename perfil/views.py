@@ -1,9 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
 from django.views import View
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 import copy
 
 
@@ -63,8 +64,7 @@ class BasePerfil(View):
 
 class Criar(BasePerfil):
     def post(self, *args, **kwargs):
-        #if not self.userform.is_valid() or not self.perfilform.is_valid():
-        if not self.userform.is_valid():
+        if not self.userform.is_valid() or not self.perfilform.is_valid():
             return self.renderizar
         
         username = self.userform.cleaned_data.get('username')
@@ -119,6 +119,15 @@ class Criar(BasePerfil):
 
         self.request.session['carrinho']  = self.carrinho
         self.request.session.save()
+
+        messages.success(
+            self.request,
+            'Seu cadastro foi criado ou atualizado com sucesso.')
+        messages.success(
+            self.request,
+            'Você fez login e pode concluir sua compra.')
+
+        return redirect('perfil:criar')
         return self.renderizar
     
 
@@ -129,8 +138,8 @@ class Atualizar(View):
 
 
 class Login(View):
-    def get(self, *args, **kwargs):
-        return HttpResponse('Login')
+    def post(self, *args, **kwargs):
+        pass
 
 
 class Logout(View):
