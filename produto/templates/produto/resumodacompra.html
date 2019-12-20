@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load filters %}
 
 {% block conteudo %}
  <main class="container mt-4 mb-4">
@@ -52,45 +53,26 @@
 
 
 
-        <div class="row">
+        <div class="row mt-3">
             <div class="col">
-                <h3>Carrinho de compras</h3>
+                <h3>Resumo do carrinho</h3>
                 <p class="lead">Os produtos, quantidades e preços que você escolheu.</p>
 
-                <div class="table-responsive">
-                    <table class="table">
-                        <tr>
-                            <th class="d-none d-lg-block">Imagem</th>
-                            <th>Produto</th>
-                            <th>AT.</th>
-                            <th>QTD.</th>
-                            <th>Total</th>
-                        </tr>
+               {% include 'parciais/_carrinho.html' %}
 
-                        <tr>
-                            <td class="d-none d-lg-block">
-                                <img class="img-thumbnail img-fluid" style="width:150px; height: auto;"
-                                    src="imgs/7eb9d706-b8e3-48d0-957e-25f4a722f944.jpg">
-                            </td>
-                            <td>
-                                Camiseta Redbug Super Natural Bros
-                                <a class="ml-3" href="#">
-                                    <i class="fas fa-times-circle text-danger" aria-hidden="true"></i>
-                                </a>
-                            </td>
-                            <td>P</td>
-                            <td>1 x 39,9</td>
-                            <td>R$ 39,90</td>
-                        </tr>
-
-                    </table>
-                </div>
             </div>
         </div>
 
+        <div class="row mt-3">
+        <div class="col">
+                <p class="lead text-center"> <span class="font-weight-bold">Total do carrinho:</span> {{ carrinho|cart_totals|formata_preco }}</p>
+            </div>
+        </div>
+
+
         <div class="row">
             <div class="col">
-                <a class="btn btn-block btn-primary btn-lg" href="#">
+                <a class="btn btn-block btn-primary btn-lg" href="{% url 'pedido:pagar' %}">
                     Realizar pedido e pagar
                 </a>
             </div>
