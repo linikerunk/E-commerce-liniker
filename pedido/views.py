@@ -4,6 +4,9 @@ from django.views import View
 from django.http import HttpResponse
 from django.contrib import messages
 from produto.models import Variacao
+from .models import Pedido, ItemPedido
+
+from utils import utils
 
 
 # Create your views here.
@@ -59,6 +62,34 @@ class Pagar(View):
                 self.request.session.save()
                 return redirect('produto:carrinho')
             
+        qtd_total_carrinho = utils.cart_total_qtd(carrinho)
+        valor_total_carrinho = utils.cart_totals(carrinho)
+
+        pedido = Pedido(
+            usuario=self.request.user,
+            total=valor_total_carrinho,
+            qtd_total=qtd_total_carrinho,
+            status='C',
+        )
+
+        pedido.save()
+
+        ItemPedido.objects.bulk_create(
+            [
+                ItemPedido(
+                    pedido=pedido,
+                    produto=v['produto_nome'],
+                    produto_id=v['produto_id'],
+                    variacao=v['variacao'],
+                    variacao_id=v['variacao_id'],
+                    preco=v['preco_quantitativo'],
+                    preco_promocional=v['preco_quantitativo_promocional'],
+                    quantidade=v['quantidade'],
+                    imagem=v['imagem'],
+                ) for v  in carrinho.values()
+            ]
+        )
+
         contexto = {
 
         }
