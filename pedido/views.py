@@ -80,7 +80,7 @@ class Pagar(View):
                     pedido=pedido,
                     produto=v['produto_nome'],
                     produto_id=v['produto_id'],
-                    variacao=v['variacao'],
+                    variacao=v['variacao_nome'],
                     variacao_id=v['variacao_id'],
                     preco=v['preco_quantitativo'],
                     preco_promocional=v['preco_quantitativo_promocional'],
@@ -90,10 +90,9 @@ class Pagar(View):
             ]
         )
 
-        contexto = {
-
-        }
-        return render(self.request, self.template_name, contexto)
+        del self.request.session['carrinho']
+        #return render(self.request, self.template_name)
+        return redirect('pedido:lista')
 
 
 
@@ -104,3 +103,7 @@ class SalvarPedido(View):
 class Detalhe(View):
     def get(self, *args, **kwargs):
         return HttpResponse('Detalhe')
+
+class Lista(View):
+    def get(self, *args, **kwargs):
+        return HttpResponse('Lista Pedido')
